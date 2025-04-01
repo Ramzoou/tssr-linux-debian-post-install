@@ -28,7 +28,7 @@ check_and_install() {
     fi
   fi
 }
-
+fdfdfdf
 ask_yes_no() {
   read -p "$1 [y/N]: " answer
   case "$answer" in
