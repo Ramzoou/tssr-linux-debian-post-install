@@ -1,2 +1,2 @@
-echo "Welcome to the sal" | sudo tee /etc/motd
+Welcome to the sal
 
