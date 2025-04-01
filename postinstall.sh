@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# === VARIABLES ===
+# === VARIABLES === test
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 LOG_DIR="./logs"
 LOG_FILE="$LOG_DIR/postinstall_$TIMESTAMP.log"
