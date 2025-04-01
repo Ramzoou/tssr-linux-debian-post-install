@@ -70,7 +70,7 @@ else
   log "motd.txt not found."
 fi
 
-# === 4. CUSTOM .bashrc ===
+# === 4. CUSTOM .bashrc ===  
 if [ -f "$CONFIG_DIR/bashrc.append" ]; then
   cat "$CONFIG_DIR/bashrc.append" >> "$USER_HOME/.bashrc"
   chown "$USERNAME:$USERNAME" "$USER_HOME/.bashrc"
