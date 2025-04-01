@@ -11,9 +11,9 @@ CONFIG_DIR="./config"
 # Chemin du fichier contenant la liste des paquets à installer
 PACKAGE_LIST="./lists/packages.txt"
 # Récupération du nom de l'utilisateur connecté
-USERNAME=$(logname)
+tech=$(logname)
 # Définition du chemin vers le dossier personnel de l'utilisateur
-USER_HOME="/home/$USERNAME"
+USER_HOME="/home/$tech"
 
 # === FONCTIONS ===
 # Fonction pour enregistrer les logs
@@ -52,7 +52,7 @@ mkdir -p "$LOG_DIR"
 # Création du fichier log
 touch "$LOG_FILE"
 # Enregistrement de l'utilisateur dans les logs
-log "Starting post-installation script. Logged user: $USERNAME"
+log "Starting post-installation script. Logged user: $tech"
 
 # Vérification que le script est exécuté en root
 if [ "$EUID" -ne 0 ]; then
@@ -86,7 +86,7 @@ fi
 # === 4. PERSONNALISATION DU .bashrc ===  
 if [ -f "$CONFIG_DIR/bashrc.append" ]; then
   cat "$CONFIG_DIR/bashrc.append" >> "$USER_HOME/.bashrc"
-  chown "$USERNAME:$USERNAME" "$USER_HOME/.bashrc"
+  chown "$tech:$tech" "$USER_HOME/.bashrc"
   log ".bashrc customized."
 else
   log "bashrc.append not found."
@@ -95,7 +95,7 @@ fi
 # === 5. PERSONNALISATION DU .nanorc ===
 if [ -f "$CONFIG_DIR/nanorc.append" ]; then
   cat "$CONFIG_DIR/nanorc.append" >> "$USER_HOME/.nanorc"
-  chown "$USERNAME:$USERNAME" "$USER_HOME/.nanorc"
+  chown "$tech:$tech" "$USER_HOME/.nanorc"
   log ".nanorc customized."
 else
   log "nanorc.append not found."
@@ -106,7 +106,7 @@ if ask_yes_no "Would you like to add a public SSH key?"; then
   read -p "Paste your public SSH key: " ssh_key
   mkdir -p "$USER_HOME/.ssh"
   echo "$ssh_key" >> "$USER_HOME/.ssh/authorized_keys"
-  chown -R "$USERNAME:$USERNAME" "$USER_HOME/.ssh"
+  chown -R "$tech:$tech" "$USER_HOME/.ssh"
   chmod 700 "$USER_HOME/.ssh"
   chmod 600 "$USER_HOME/.ssh/authorized_keys"
   log "SSH public key added."
